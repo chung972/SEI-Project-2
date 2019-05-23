@@ -7,6 +7,7 @@ var logger = require('morgan');
 // require the database; again, note that the deployed version
 // will NOT be redirected to localhost:3000
 require("./config/database");
+require("./config/passport");
 
 // TODO: set up AUTHENTICATION
 var session = require("express-session");
