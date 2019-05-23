@@ -4,11 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-// require the database; again, note that the deployed version
-// will NOT be redirected to localhost:3000
-require("./config/database");
-require("./config/passport");
-
 // TODO: set up AUTHENTICATION
 var session = require("express-session");
 var passport = require("passport");
@@ -18,6 +13,11 @@ require('dotenv').config();
 
 // create the Express app
 var app = express();
+
+// require the database; again, note that the deployed version
+// will NOT be redirected to localhost:3000
+require("./config/database");
+require("./config/passport");
 
 // TODO: connect to the MongoDB with mongoose; Daniel will go
 // over how to use MongoDB Atlas
