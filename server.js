@@ -4,10 +4,23 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// TODO: set up AUTHENTICATION
+
+// load the .env vars
+require('dotenv').config();
+
+// create the Express app
+var app = express();
+
+// TODO: connect to the MongoDB with mongoose; Daniel will go
+// over how to use MongoDB Atlas
+
+// TODO: configure passport for OUR app
+
+
+// require our routes
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,6 +32,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// TODO: need to mount session and passport middleware
+// must be done BELOW cookieParser
+
+// mount all routes with appropriate base paths
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
