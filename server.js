@@ -10,6 +10,7 @@ require("./config/database");
 
 // TODO: set up AUTHENTICATION
 var session = require("express-session");
+var passport = require("passport");
 
 // load the .env vars
 require('dotenv').config();
@@ -44,6 +45,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // mount all routes with appropriate base paths
 app.use('/', indexRouter);
