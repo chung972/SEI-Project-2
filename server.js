@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // TODO: set up AUTHENTICATION
+var session = require("express-session");
 
 // load the .env vars
 require('dotenv').config();
@@ -34,6 +35,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // TODO: need to mount session and passport middleware
 // must be done BELOW cookieParser
+app.use(session({
+  secret: "I love cookies!",
+  resave: false,
+  saveUninitialized: true
+}));
 
 // mount all routes with appropriate base paths
 app.use('/', indexRouter);
