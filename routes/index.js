@@ -22,6 +22,9 @@ router.get("/auth/google", passport.authenticate(
 ));
 
 // Google OAuth CALLBACK route
+// HEY LOOK HERE!!!!! once we deploy using heroku, you're going to have to go into
+// the .env file and change the route for GOOGLE_CALLBACK; at that point we won't
+// be using http://localhost:3000/ anymore
 router.get("/oauth2callback", passport.authenticate(
   "google",
   {
