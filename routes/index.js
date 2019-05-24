@@ -4,16 +4,21 @@ const passport = require("passport");
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-  // TODO: have index.ejs be a landing page; look at
-  // wireframes for more details
+router.get('/', function (req, res, next) {
+    res.render('index');
+    // TODO: we DON'T want the logic to live here. call on a controller function
+    // if you want to perform logic; therefore, we want to redirect to another view
+    // page; consider where you want to redirect/render, though;
+    // maybe something like /users/show 
 });
 
 // Google OAuth LOGIN route
 router.get("/auth/google", passport.authenticate(
   "google",
-  {scope: ["profile"]}
+  { scope: ["profile"] }
+  // TODO: read documentation on scope; note that unlike the sei students example
+  // we did in class, because we're not using email, we're going to leave that
+  // property(?) out
 ));
 
 // Google OAuth CALLBACK route
@@ -27,7 +32,7 @@ router.get("/oauth2callback", passport.authenticate(
   }
 ));
 
-router.get("/logout", (req,res)=>{
+router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
   // TODO: again, we'll want to specify what PATH (i.e. not relative
