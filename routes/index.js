@@ -5,7 +5,7 @@ const passport = require("passport");
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    res.render('index');
+    res.render('index', {title: "Express"});
     // TODO: we DON'T want the logic to live here. call on a controller function
     // if you want to perform logic; therefore, we want to redirect to another view
     // page; consider where you want to redirect/render, though;
