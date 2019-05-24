@@ -12,11 +12,11 @@
 </head>
 
 <body>
-    <h1><%= title %></h1>
-    <nav>
+    <nav class="flex-ctr">
         <ul>
             <li>
                 <% if (user) { %>
+                <a href="/users/<%= user._id%>">My Account</a>
                 <a href="/logout">Log Out</a>
                 <% } else { %>
                 <a href="/auth/google">Login with Google</a>
@@ -24,6 +24,7 @@
             </li>
         </ul>
     </nav>
+    <h1><%= title %></h1>
     <!-- title is passed in as an optional parameter (aka "locals") to the res.render() function; 
     locals is an object whose properties define local variables for the VIEW;
     you can read more in the documentation here: https://expressjs.com/en/api.html#res.redirect;
