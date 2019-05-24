@@ -1,5 +1,6 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const usersCtrl = require("../controllers/users");
 
 
 // remember, with users, we'll only really ever need to
@@ -8,8 +9,11 @@ var router = express.Router();
 // is that SHOW will RENDER (we won't be changing any data)
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/:id', (req, res, next) => {
+  res.render("users/show", {
+    title: "My Account",
+    user: req.user
+  })
 });
 
 module.exports = router;
