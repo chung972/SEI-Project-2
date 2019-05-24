@@ -13,6 +13,7 @@ passport.use(new GoogleStrategy({
             return cb(null, user);
         } else {
             var newUser = new User({
+                // TODO: the profile object will be instrumental in getting avatar
                 name: profile.displayName,
                 googleId: profile.id
             });
