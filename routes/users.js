@@ -9,11 +9,6 @@ const usersCtrl = require("../controllers/users");
 // is that SHOW will RENDER (we won't be changing any data)
 
 /* GET users listing. */
-router.get('/:id', (req, res, next) => {
-  res.render("users/show", {
-    title: "My Account",
-    user: req.user
-  })
-});
+router.get("/:id", usersCtrl.show);
 
 module.exports = router;
