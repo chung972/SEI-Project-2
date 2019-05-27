@@ -2,7 +2,8 @@ const Recipe = require("../models/recipe");
 
 module.exports = {
     index,
-    show
+    show,
+    new: newRecipe
 }
 
 function index(req, res){
@@ -18,4 +19,11 @@ function index(req, res){
 function show(req, res){
     Recipe.findById(req.params.id);
 
+}
+
+function newRecipe(req, res){
+    res.render("recipes/new", {
+        title: "New Recipe",
+        user: req.user
+    });
 }
