@@ -7,7 +7,9 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 // two different ways of using Schema; you can assign a Schema const up here,
-// or you can call mongoose.Schema in "var nameSchema = new mongoose.Schema"
+// or you can call mongoose.Schema in "var nameSchema = new mongoose.Schema";
+// in this case, we would want to create the shortcut variable (because we'll
+// be calling it below for the 'user' property)
 
 var recipeSchema = new Schema({
     name: {
@@ -21,6 +23,11 @@ var recipeSchema = new Schema({
     }],
     imageURL: {
         type: String
+    },
+    user: {
+        // is user a keyword?
+        type: Schema.Types.ObjectId,
+        ref: "User"
     }
 }, {
     timestamps: true
