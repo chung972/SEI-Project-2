@@ -5,11 +5,16 @@ const passport = require("passport");
 
 
 /* GET home page. */
-router.get('/', (req, res, next)=> {
-    res.render('index', {
-      title: "EpiKorean",
-      user: req.user
-    });
+router.get('/', (req, res, next) => {
+  res.render('index', {
+    title: "EpiKorean",
+    user: req.user
+    // for ever page we present (either by rendering or redirecting),
+    // we are going to need to pass in this property in the context object;
+    // what "user: req.user" does for us, is let us dynamically show the user
+    // either the logIN or logOUT button/link (for the actual logic, go to the
+    // header.ejs under view/partials/)
+  });
 });
 
 // Google OAuth LOGIN route
