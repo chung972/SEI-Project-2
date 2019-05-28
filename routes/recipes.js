@@ -9,5 +9,7 @@ router.get("/recipes", recipesCtrl.index);
 router.get("/recipes/:id", recipesCtrl.show);
 router.get("/users/:id/recipes/new", recipesCtrl.new);
 router.post("/users/:id/recipes", recipesCtrl.create);
+router.get("/recipes/:id/edit", recipesCtrl.edit);
+router.put("/recipes/:id", recipesCtrl.update);
 
 module.exports = router;
