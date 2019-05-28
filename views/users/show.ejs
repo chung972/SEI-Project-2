@@ -1,8 +1,10 @@
 <%- include("../partials/header") %>
 
+<h2>Welcome back, <%= user.name%></h2>
+
 <div>
     <p>My Recipes</p>
-
+    <a href="/users/<%= user._id%>/recipes/new">Add New Recipe</a>
 </div>
 
 <p>My Favorites</p>
