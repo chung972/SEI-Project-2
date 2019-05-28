@@ -4,8 +4,19 @@
 
 <div>
     <p>My Recipes</p>
+    <ul>
+        <!-- consider refactoring the forEach below so that it lives in a
+        partial; that way we can stay more DRY -->
+        <% recipes.forEach(recipe => { %>
+        <li>
+            <a href="/recipes/<%= recipe._id%>"> <%= recipe.name%> </a>
+        </li>
+        <% }); %>
+    </ul>
     <a href="/users/<%= user._id%>/recipes/new">Add New Recipe</a>
 </div>
+
+<hr>
 
 <p>My Favorites</p>
 
