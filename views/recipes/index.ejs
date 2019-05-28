@@ -1,6 +1,13 @@
 <%- include("../partials/header") %>
 
-<p>Recipe List</p>
+<ul>
+    <% recipes.forEach(recipe => { %>
+        <li>
+            <a href="/recipes/<%= recipe._id%>"> <%= recipe.name%> </a>
+        </li>
+    <% }); %>
+</ul>
+
 
 
 
