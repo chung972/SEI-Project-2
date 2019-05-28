@@ -23,6 +23,14 @@ const Schema = mongoose.Schema;
 //     timestamps: true
 // });
 
+var commentSchema = new Schema({
+    text: {
+        type: String
+    }
+}, {
+    timestamps: true
+})
+
 var recipeSchema = new Schema({
     name: {
         type: String
@@ -43,7 +51,8 @@ var recipeSchema = new Schema({
         // is user a keyword?
         type: Schema.Types.ObjectId,
         ref: "User"
-    }
+    },
+    comments: [commentSchema]
 }, {
     timestamps: true
 });
