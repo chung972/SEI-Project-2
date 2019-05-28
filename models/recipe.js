@@ -18,9 +18,8 @@ var recipeSchema = new Schema({
     description: {
         type: String
     },
-    ingredients: [{
-        type: String
-    }],
+    ingredients: [ingredientSchema],
+    instructions:[instructionSchema],
     imageURL: {
         type: String
     },
@@ -29,6 +28,21 @@ var recipeSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     }
+}, {
+    timestamps: true
+});
+
+// in order to have the ability to add/delete instructions and ingredients,
+// we are going to need to embed those two data entities; inspired from the
+// sei-students lab from w05/d3
+var ingredientSchema = new Schema({
+    text: String
+}, {
+    timestamps: true
+});
+
+var instructionSchema = new Schema({
+    text: String
 }, {
     timestamps: true
 });
