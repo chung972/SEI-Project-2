@@ -4,10 +4,12 @@ module.exports = {
     index,
     show,
     new: newRecipe,
-    create
+    create,
+    edit,
+    update
 }
 
-function index(req, res){
+function index(req, res) {
     Recipe.find({}, (err, recipes) => {
         res.render("recipes/index", {
             title: "Recipe List",
@@ -17,16 +19,17 @@ function index(req, res){
     })
 }
 
-function show(req, res){
+function show(req, res) {
     Recipe.findById(req.params.id, (err, recipe) => {
         res.render("recipes/show", {
             title: recipe.name,
-            user: req.user
+            user: req.user,
+            recipe
         });
     })
 }
 
-function newRecipe(req, res){
+function newRecipe(req, res) {
     res.render("recipes/new", {
         title: "New Recipe",
         user: req.user
@@ -36,12 +39,36 @@ function newRecipe(req, res){
     });
 }
 
-function create(req, res){
+function create(req, res) {
     // we assign the .user property in the Recipe model to be the user id that was
     // passed in from newRecipe
-    req.body.user = req.params.id;
-    Recipe.create(req.body, (err, recipe)=>{
+    Recipe.create(req.body, (err, recipe) => {
         console.log(recipe);
         res.redirect(`/recipes/${recipe._id}`);
-    })
+    });
+}
+
+function edit(req, res) {
+    Recipe.findById(req.params.id, (err, recipe) => {
+        res.render("recipes/edit", {
+            title: `${recipe.name}`,
+            user: req.user,
+            recipe
+        });
+    });
+}
+
+function update(req, res) {
+    Recipe.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, recipe) => {
+        console.log(recipe);
+        console.log(recipe.__v);
+        res.redirect(`/recipes/${recipe._id}`);
+        // res.render("recipes/show",{
+        //     title: `${recipe.name}`,
+        //     user: req.user,
+        //     recipe
+        // });
+    });
+    // https://stackoverflow.com/questions/30419575/mongoose-findbyidandupdate-not-returning-correct-model
+
 }
