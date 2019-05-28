@@ -14,10 +14,21 @@
 <p><%= recipe.instructions%></p>
 <hr>
 
-
-
 <a href="/recipes/<%= recipe._id%>/edit">Update Recipe</a>
+<hr>
 
+<h5>Comments:</h5><br>
+<form action="/recipes/<%= recipe._id%>/comments" method="POST">
+    <label>
+        <textarea name="text" cols="30" rows="5"></textarea>
+    </label><br>
+    <input type="submit" value="Add Comment">
+</form>
 
+<% if (recipe.comments.length) {%>
+    <% recipe.comments.forEach(comment => { %>
+        <p><%= comment.text%></p>
+    <% }) %>
+<% }%>
 
 <%- include("../partials/footer") %>
