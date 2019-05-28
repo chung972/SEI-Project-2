@@ -1,0 +1,26 @@
+<%- include("../partials/header") %>
+
+<form action="/recipes/<%= recipe._id%>?_method=PUT" method="POST" autocomplete="off">
+    <label>Version <%= recipe.__v%></label><br>
+    <label>Recipe Name:
+        <input type="text" name="name" value="<%= recipe.name%>">
+    </label><br>
+    <label>Description:
+        <br><textarea name="description" id="" cols="30" rows="5"><%= recipe.description%></textarea>
+    </label><br>
+    <label>Ingredients (separate items with commas):
+        <br><textarea name="ingredients" id="" cols="30" rows="5"><%= recipe.ingredients%></textarea>
+    </label><br>
+    <label>Instructions (separate items with commas):
+        <br><textarea name="instructions" id="" cols="30" rows="5"><%= recipe.instructions%></textarea>
+    </label><br>
+    <label>Image URL:
+        <input type="text" name="imageURL" value="<%= recipe.imageURL%>">
+    </label><br>
+
+
+    <input type="submit">
+</form>
+
+
+<%- include("../partials/footer") %>
