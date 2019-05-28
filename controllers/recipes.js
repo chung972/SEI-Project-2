@@ -18,14 +18,21 @@ function index(req, res){
 }
 
 function show(req, res){
-    Recipe.findById(req.params.id);
-
+    Recipe.findById(req.params.id, (err, recipe) => {
+        res.render("recipes/show", {
+            title: recipe.name,
+            user: req.user
+        });
+    })
 }
 
 function newRecipe(req, res){
     res.render("recipes/new", {
         title: "New Recipe",
         user: req.user
+        // NOTE: req.user is NOT the same as req.params.id
+        // the former is an object that is created during a passport session
+        // and the latter is whatever id is passed into the path
     });
 }
 
