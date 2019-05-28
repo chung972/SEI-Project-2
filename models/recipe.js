@@ -11,6 +11,18 @@ const Schema = mongoose.Schema;
 // in this case, we would want to create the shortcut variable (because we'll
 // be calling it below for the 'user' property)
 
+// var ingredientSchema = new Schema({
+//     text: String
+// }, {
+//     timestamps: true
+// });
+
+// var instructionSchema = new Schema({
+//     text: String
+// }, {
+//     timestamps: true
+// });
+
 var recipeSchema = new Schema({
     name: {
         type: String
@@ -18,8 +30,12 @@ var recipeSchema = new Schema({
     description: {
         type: String
     },
-    ingredients: [ingredientSchema],
-    instructions:[instructionSchema],
+    // the embedded schemas above and the two lines below are to be
+    // paired with socket.io (live connection between front/back end)
+    // ingredients: [ingredientSchema],
+    // instructions:[instructionSchema],
+    ingredients: [],
+    instructions: [],
     imageURL: {
         type: String
     },
@@ -35,16 +51,6 @@ var recipeSchema = new Schema({
 // in order to have the ability to add/delete instructions and ingredients,
 // we are going to need to embed those two data entities; inspired from the
 // sei-students lab from w05/d3
-var ingredientSchema = new Schema({
-    text: String
-}, {
-    timestamps: true
-});
 
-var instructionSchema = new Schema({
-    text: String
-}, {
-    timestamps: true
-});
 
 module.exports = mongoose.model("Recipe", recipeSchema);
