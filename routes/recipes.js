@@ -8,5 +8,6 @@ const recipesCtrl = require("../controllers/recipes");
 router.get("/recipes", recipesCtrl.index);
 router.get("/recipes/:id", recipesCtrl.show);
 router.get("/users/:id/recipes/new", recipesCtrl.new);
+router.post("/users/:id/recipes", recipesCtrl.create);
 
 module.exports = router;
