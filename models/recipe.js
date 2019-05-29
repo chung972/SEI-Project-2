@@ -31,6 +31,12 @@ var commentSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: "User"
+    },
+    author: {
+        type: String
+    },
+    avatar: {
+        type: String
     }
 }, {
         timestamps: true
