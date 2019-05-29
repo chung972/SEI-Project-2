@@ -7,15 +7,21 @@ module. exports = {
 
 function create(req, res){
     Recipe.findById(req.params.id, (err, recipe) => {
-
-        req.body.user = req.user._id;
         
+        req.body.user = req.user._id;
         // we want to assign the .user property key in the comment schema to the value of
         // a user('s)._id; however, in this case, the req.params that's being passed in is
-        // the id for the RECIPE and not the user
+        // the id for the RECIPE and not the user; REMEMBER that ONLY users (meaning they've
+        // logged in) are able to CREATE comments; therefore, req.user will inherently always
+        // be a handle on the user creating a comment
 
-        
-        // const comment = { text: 'testing123', user: '5ce830b976e61712f3cec85a' }
+        req.body.author = req.user.name;
+        // along the same lines in the comments above, because req.user is an actual handle
+        // on the user OBJECT, we are able to call user.name and get the .name (returned courtesy
+        // of Google)
+
+        req.body.avatar = req.user.avatar;
+
         recipe.comments.push(req.body);
         recipe.save(err => {
             // side note, because we have to save the MODEL whenever we want to add a comment,
