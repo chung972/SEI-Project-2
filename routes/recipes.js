@@ -7,14 +7,15 @@ const recipesCtrl = require("../controllers/recipes");
 
 router.get("/recipes", recipesCtrl.index);
 router.get("/recipes/:id", recipesCtrl.show);
-router.get("/users/:id/recipes/new", recipesCtrl.new);
-router.post("/users/:id/recipes", recipesCtrl.create);
-router.get("/recipes/:id/edit", recipesCtrl.edit);
-router.put("/recipes/:id", recipesCtrl.update);
+router.get("/users/:id/recipes/new", isLoggedIn, recipesCtrl.new);
+router.post("/users/:id/recipes", isLoggedIn, recipesCtrl.create);
+router.get("/recipes/:id/edit", isLoggedIn, recipesCtrl.edit);
+router.put("/recipes/:id", isLoggedIn, recipesCtrl.update);
+router.delete("/users/:userid/recipes/:recipeid", isLoggedIn, recipesCtrl.delete);
 
 module.exports = router;
 
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()) return next();
-    res.redirect("/");
+    res.redirect("/recipes");
 }
