@@ -27,7 +27,15 @@
 
 <% if (recipe.comments.length) {%>
     <% recipe.comments.forEach(comment => { %>
-        <p><%= comment.text%></p>
+        <form action="/recipes/<%= recipe._id%>/comments/<%= comment._id%>?_method=DELETE" method="POST">
+            <!-- NOTE! remember that html can only GET and POST requests; so we'll be needing method-override again
+            to convert this "POST" request to a "DELETE" request (this is done by: "?_method=DELETE" appended to the
+            end of our comment id); -->
+            <h6>User: <%= comment.user%></h6>
+            <input type="submit" value="X">
+            <p><%= comment.text%></p>
+            <hr>
+        </form>
     <% }) %>
 <% }%>
 
