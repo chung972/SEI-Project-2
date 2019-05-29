@@ -25,11 +25,16 @@ const Schema = mongoose.Schema;
 
 var commentSchema = new Schema({
     text: {
-        type: String
+        type: String,
+    },
+    // BE CAREFUL YOU DON'T NEST PROPERTIES INSIDE EACH OTHER. FFS
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
     }
 }, {
-    timestamps: true
-})
+        timestamps: true
+    })
 
 var recipeSchema = new Schema({
     name: {
@@ -54,8 +59,8 @@ var recipeSchema = new Schema({
     },
     comments: [commentSchema]
 }, {
-    timestamps: true
-});
+        timestamps: true
+    });
 
 // in order to have the ability to add/delete instructions and ingredients,
 // we are going to need to embed those two data entities; inspired from the
