@@ -1,7 +1,8 @@
 const Recipe = require("../models/recipe");
 
 module. exports = {
-    create
+    create,
+    delete: deleteComment
 }
 
 function create(req, res){
@@ -24,3 +25,28 @@ function create(req, res){
         });
     });
 }
+
+function deleteComment(req, res){
+    console.log("req.params.id of the comment should be: "+req.params.id);
+    // Recipe.findByIdAndDelete(req.params.id, (err)=>{
+    // // Recipe.findByIdAndDelete({"comments.comment": req.params.id}, ()=>{
+    //     console.log("you got this far");
+    //     res.redirect(`/`);
+    // });
+    // the code above won't work because if we think about it, the comments property in our Recipe model is
+    // an ARRAY. remember that comments are an embedded schema, so they can't stand alone (this is 
+    // apparent in the example labs where in order to save a review in movies, we had to save the 
+    // movie MODEL); also, BECAUSE comments are a subdoc and can't stand alone, we won't be able to
+    // use methods like .findByIdAndDelete (note how we wouldn't even be able to .require() Comment
+    // because they don't have their own model to begin with)
+
+    Recipe.findByIdAndUpdate(req.params.recipeid, {$pull: {comments: {_id: req.params.commentid}}}, ()=>{
+        res.redirect(`/recipes/${req.params.recipeid}`);
+    });
+    // considering that explanation in the above comments, the thought process for THIS solution (i'm sure there
+    // are other, maybe more semantic, ways of doing it) is we first have to make the route (that'll eventually call
+    // this controller action) include both the recipe id and comment id. we do that in the recipe show.ejs (in that
+    // view template we already have handles on both the currently viewed recipe and a specific comment - which we get
+    // from iterating through a forEach). we use those two ids to construct our route: "/recipes/:recipeid/comments/:commentid"
+}
+
