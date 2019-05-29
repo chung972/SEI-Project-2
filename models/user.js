@@ -6,7 +6,8 @@ var userSchema = new mongoose.Schema({
         required: true
     },
     favorites: [],
-    googleId: String
+    googleId: String,
+    avatar: String
 }, {
     timestamps: true
 });
