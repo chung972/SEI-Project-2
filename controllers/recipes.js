@@ -6,7 +6,8 @@ module.exports = {
     new: newRecipe,
     create,
     edit,
-    update
+    update,
+    delete: deleteRecipe
 }
 
 function index(req, res) {
@@ -68,4 +69,12 @@ function update(req, res) {
     });
     // https://stackoverflow.com/questions/30419575/mongoose-findbyidandupdate-not-returning-correct-model
 
+}
+
+function deleteRecipe(req, res){
+    Recipe.findByIdAndDelete(req.params.recipeid, (err)=>{
+        res.redirect(`/users/${req.params.userid}`)
+        // could we do /recipe/:recipeid/users/:userid just so we could "pass in" (for all intents
+        // and purposes) the user id, so we have a handle on it to redirect back to?
+    })
 }
