@@ -4,38 +4,40 @@
 
 <h3>Description:</h3>
 <p><%= recipe.description%></p>
-<hr>
+<hr><br>
 
 <h3>Ingredients:</h3>
 <p><%= recipe.ingredients%></p>
-<hr>
+<hr><br>
 
 <h3>Instructions:</h3>
 <p><%= recipe.instructions%></p>
-<hr>
+<hr><br>
 
 <a href="/recipes/<%= recipe._id%>/edit">Update Recipe</a>
-<hr>
+<hr><br>
 
-<h5>Comments:</h5><br>
+<h3>Comments:</h3>
 <form action="/recipes/<%= recipe._id%>/comments" method="POST">
     <label>
         <textarea name="text" cols="30" rows="5"></textarea>
     </label><br>
     <input type="submit" value="Add Comment">
 </form>
+<hr><br>
 
 <% if (recipe.comments.length) {%>
     <% recipe.comments.forEach(comment => { %>
+        <img src="<%= comment.avatar%>" height="50" width="50">
+        <h4><%= comment.author%> says:</h6>
         <form action="/recipes/<%= recipe._id%>/comments/<%= comment._id%>?_method=DELETE" method="POST">       
             <input type="submit" value="X">
         </form>
             <!-- NOTE! remember that html can only GET and POST requests; so we'll be needing method-override again
             to convert this "POST" request to a "DELETE" request (this is done by: "?_method=DELETE" appended to the
             end of our comment id); -->
-            <h6>User: <%= comment.user%></h6>
-            <p><%= comment.text%></p>
-            <hr>
+        <p><%= comment.text%></p>
+        <hr>
 
     <% }) %>
 <% }%>
