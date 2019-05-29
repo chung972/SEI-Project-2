@@ -7,7 +7,8 @@ module.exports = {
     create,
     edit,
     update,
-    delete: deleteRecipe
+    delete: deleteRecipe,
+    random
 }
 
 function index(req, res) {
@@ -16,8 +17,8 @@ function index(req, res) {
             title: "Recipe List",
             recipes,
             user: req.user
-        })
-    })
+        });
+    });
 }
 
 function show(req, res) {
@@ -27,7 +28,7 @@ function show(req, res) {
             user: req.user,
             recipe
         });
-    })
+    });
 }
 
 function newRecipe(req, res) {
@@ -71,10 +72,22 @@ function update(req, res) {
 
 }
 
-function deleteRecipe(req, res){
-    Recipe.findByIdAndDelete(req.params.recipeid, (err)=>{
+function deleteRecipe(req, res) {
+    Recipe.findByIdAndDelete(req.params.recipeid, (err) => {
         res.redirect(`/users/${req.params.userid}`)
         // could we do /recipe/:recipeid/users/:userid just so we could "pass in" (for all intents
         // and purposes) the user id, so we have a handle on it to redirect back to?
-    })
+    });
+}
+
+function random(req, res) {
+    Recipe.find({}, (err, recipes) => {
+        let randNum = getRndInteger(0, recipes.length);
+        let url = recipes[randNum]._id
+        res.redirect(`/recipes/${url}`);
+    });
+}
+
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
 }
