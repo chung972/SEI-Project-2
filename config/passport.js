@@ -10,12 +10,15 @@ passport.use(new GoogleStrategy({
     User.findOne({ "googleId": profile.id }, (err, user) => {
         if (err) return cb(err);
         if (user) {
+            console.log(profile);
             return cb(null, user);
         } else {
             var newUser = new User({
                 // TODO: the profile object will be instrumental in getting avatar
                 name: profile.displayName,
-                googleId: profile.id
+                googleId: profile.id,
+                // avatar: profile.photos[0].value
+                avatar: profile._json.picture
             });
         }
         newUser.save(err => {
