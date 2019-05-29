@@ -18,5 +18,5 @@ function isLoggedIn(req, res, next){
     if(req.isAuthenticated()) return next();
     console.log(req.path);
     console.log(req.originalUrl);
-    res.redirect("/");
+    res.redirect("/recipes");
 }
