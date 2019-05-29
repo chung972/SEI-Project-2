@@ -13,3 +13,8 @@ router.get("/recipes/:id/edit", recipesCtrl.edit);
 router.put("/recipes/:id", recipesCtrl.update);
 
 module.exports = router;
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()) return next();
+    res.redirect("/");
+}
