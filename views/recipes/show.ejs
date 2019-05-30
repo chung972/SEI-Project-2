@@ -7,11 +7,19 @@
 <hr><br>
 
 <h3>Ingredients:</h3>
-<p><%= recipe.ingredients%></p>
+<ul>
+    <% recipe.ingredients.forEach(ing => { %>
+        <li><%= ing%></li>
+    <% }) %>
+</ul>
 <hr><br>
 
 <h3>Instructions:</h3>
-<p><%= recipe.instructions%></p>
+<ol>
+    <% recipe.instructions.forEach(inst => { %>
+        <li><%= inst%></li>
+    <% }) %>
+</ol>
 <hr><br>
 
 <a href="/recipes/<%= recipe._id%>/edit">Update Recipe</a>
