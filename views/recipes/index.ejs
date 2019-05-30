@@ -1,5 +1,9 @@
 <%- include("../partials/header") %>
 
+<form action="/recipes" method="GET">
+        <input type="search" name="name" placeholder="search recipe name" value="<%= name %>" autocomplete="off">
+</form>
+
 <ul>
     <% recipes.forEach(recipe => { %>
         <li>
