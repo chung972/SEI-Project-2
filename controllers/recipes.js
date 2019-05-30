@@ -67,6 +67,7 @@ function edit(req, res) {
 }
 
 function update(req, res) {
+    // below is a correct example of .findByIdAndUpdate
     // Recipe.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, recipe) => {
     Recipe.findById(req.params.id, (err, recipe)=> {
         recipe.name = req.body.name;
