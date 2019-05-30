@@ -45,6 +45,8 @@ function create(req, res) {
     // we assign the .user property in the Recipe model to be the user id that was
     // passed in from newRecipe
     req.body.user = req.params.id;
+    req.body.ingredients = req.body.ingredients.split(",");
+    req.body.instructions = req.body.instructions.split(",");
     Recipe.create(req.body, (err, recipe) => {
         console.log(recipe);
         console.log(req.body);
@@ -63,11 +65,19 @@ function edit(req, res) {
 }
 
 function update(req, res) {
-    Recipe.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, recipe) => {
-        console.log(recipe);
-        console.log(recipe.__v);
-        res.redirect(`/recipes/${recipe._id}`);
+    // Recipe.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, recipe) => {
+    Recipe.findById(req.params.id, (err, recipe)=> {
+        recipe.name = req.body.name;
+        recipe.description = req.body.description;
+        recipe.ingredients = req.body.ingredients.split(",");
+        recipe.instructions = req.body.instructions.split(",");
+        recipe.imageURL = req.body.imageURL;
+        recipe.save(err => {
+            res.redirect(`/recipes/${recipe._id}`);
+        });
     });
+    //     res.redirect(`/recipes/${recipe._id}`);
+    // });
     // https://stackoverflow.com/questions/30419575/mongoose-findbyidandupdate-not-returning-correct-model
 
 }
