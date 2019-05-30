@@ -4,18 +4,26 @@ const passport = require("passport");
 
 
 
-/* GET home page. */
+/* get LANDING page. */
 router.get('/', (req, res, next) => {
   res.render('index', {
-    title: "EpiKorean",
-    user: req.user
-    // for ever page we present (either by rendering or redirecting),
+    title: "Landing"
+    // for every page we present (either by rendering or redirecting),
     // we are going to need to pass in this property in the context object;
     // what "user: req.user" does for us, is let us dynamically show the user
     // either the logIN or logOUT button/link (for the actual logic, go to the
     // header.ejs under view/partials/)
   });
 });
+
+// get HOME page
+router.get("/home", (req, res) =>{
+  res.render("home", {
+    title: "EpiKorean",
+    user: req.user
+  })
+});
+
 
 // Google OAuth LOGIN route
 router.get("/auth/google", passport.authenticate(
@@ -33,7 +41,10 @@ router.get("/auth/google", passport.authenticate(
 router.get("/oauth2callback", passport.authenticate(
   "google",
   {
-    successRedirect: "/",
+    successRedirect: "/home",
+    // we kind of unintentionally solve the problem of success and failure redirect both 
+    // going to the same path with the introduction of a landing page (which is NOW the path of "/")
+    // and shifting the old "/" to now be "/home"
     failureRedirect: "/"
     // TODO: specify what page we want to redirect to after cb executes
     // currently redirecting back to index
