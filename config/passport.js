@@ -8,9 +8,9 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.GOOGLE_CALLBACK
 }, (accessToken, refreshToken, profile, cb) => {
     User.findOne({ "googleId": profile.id }, (err, user) => {
+        console.log(profile);
         if (err) return cb(err);
         if (user) {
-            console.log(profile);
             return cb(null, user);
         } else {
             var newUser = new User({
