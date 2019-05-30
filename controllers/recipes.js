@@ -12,11 +12,13 @@ module.exports = {
 }
 
 function index(req, res) {
-    Recipe.find({}, (err, recipes) => {
+    let modelQuery = req.query.name ? {name: new RegExp(req.query.name, 'i')} : {};
+    Recipe.find(modelQuery, (err, recipes) => {
         res.render("recipes/index", {
             title: "Recipe List",
             recipes,
-            user: req.user
+            user: req.user,
+            name: req.query.name
         });
     });
 }
