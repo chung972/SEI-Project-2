@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require("passport");
+const recipesCtrl = require("../controllers/recipes");
 
 
 
@@ -17,12 +18,7 @@ router.get('/', (req, res, next) => {
 });
 
 // get HOME page
-router.get("/home", (req, res) =>{
-  res.render("home", {
-    title: "EpiKorean",
-    user: req.user
-  })
-});
+router.get("/home", recipesCtrl.featured);
 
 
 // Google OAuth LOGIN route
