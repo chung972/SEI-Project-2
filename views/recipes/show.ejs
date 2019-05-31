@@ -1,14 +1,14 @@
 <%- include("../partials/header") %>
 <div class="img-wrapper">
     <img src="<%= recipe.imageURL%>"style="max-height: 700px; max-width: 700px;">
-</div>
+</div><hr>
 
 
-<h3>Description:</h3>
+<h3 class="freddy">Description:</h3>
 <p><%= recipe.description%></p>
 <hr><br>
 
-<h3>Ingredients:</h3>
+<h3 class="freddy">Ingredients:</h3>
 <ul>
     <% recipe.ingredients.forEach(ing => { %>
         <li><%= ing%></li>
@@ -16,7 +16,7 @@
 </ul>
 <hr><br>
 
-<h3>Instructions:</h3>
+<h3 class="freddy">Instructions:</h3>
 <ol>
     <% recipe.instructions.forEach(inst => { %>
         <li><%= inst%></li>
