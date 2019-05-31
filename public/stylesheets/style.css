@@ -62,3 +62,7 @@ a:hover {
 hr {
   margin: 5px;
 }
+
+textarea{
+  resize: none;
+}
