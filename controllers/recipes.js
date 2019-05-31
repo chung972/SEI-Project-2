@@ -8,7 +8,8 @@ module.exports = {
     edit,
     update,
     delete: deleteRecipe,
-    random
+    random,
+    featured
 }
 
 function index(req, res) {
@@ -98,6 +99,20 @@ function random(req, res) {
         let randNum = getRndInteger(0, recipes.length);
         let url = recipes[randNum]._id
         res.redirect(`/recipes/${url}`);
+    });
+}
+
+function featured(req, res){
+    Recipe.find({}, (err, recipes) => {
+        let randNum = getRndInteger(0, recipes.length);
+        let randId = recipes[randNum]._id
+        Recipe.findById(randId, (err, recipe)=>{
+            res.render("home", {
+                title: "Home",
+                user: req.user,
+                recipe
+            })
+        });
     });
 }
 
