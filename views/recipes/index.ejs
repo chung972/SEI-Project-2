@@ -7,7 +7,7 @@
 <ul>
     <% recipes.forEach(recipe => { %>
         <li>
-            <a href="/recipes/<%= recipe._id%>"> <%= recipe.name%> </a>
+            <a href="/recipes/<%= recipe._id%>" class="freddy"> <%= recipe.name%> </a>
         </li>
     <% }); %>
 </ul>
