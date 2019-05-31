@@ -1,6 +1,14 @@
 <%- include("./partials/header") %>
 
 <!-- TODO: we are going to fill this out with featured recipes (3 rando or maybe 1 big) -->
+<h3 class="freddy">Featured Recipe:</h3>
+<h2 class="freddy"><%= recipe.name%></h2>
+<a href="/recipes/<%= recipe._id%>">Take me to the recipe!</a>
+<div class="img-wrapper">
+    <img src="<%= recipe.imageURL%>" style="max-height: 700px; max-width: 700px;">
+</div>
+
+
 
 
 <%- include("./partials/footer") %>
