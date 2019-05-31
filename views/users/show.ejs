@@ -4,14 +4,14 @@
 <img src= "<%= user.avatar%>" height="150" width="150">
 
 <div>
-    <p>My Recipes</p>
+    <p>My Recipes:</p>
     <ul>
         <!-- consider refactoring the forEach below so that it lives in a
         partial; that way we can stay more DRY -->
         <% recipes.forEach(recipe => { %>
-        <li>
+        <li class="inline-form-delete">
             <form action="/users/<%= user._id%>/recipes/<%= recipe._id%>?_method=DELETE" method="POST">
-                <input type="submit" value="X">
+                <input type="submit" value="X" class="x-button">
             </form>
             <a href="/recipes/<%= recipe._id%>"> <%= recipe.name%> </a>
         </li>
@@ -21,7 +21,5 @@
 </div>
 
 <hr>
-
-<p>My Favorites</p>
 
 <%- include("../partials/footer") %>
