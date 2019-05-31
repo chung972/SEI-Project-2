@@ -14,7 +14,8 @@
 </head>
 
 <body>
-    <h1 class="title freddy">EpiKorean</h1><hr>
+    <h1 class="title freddy">EpiKorean</h1>
+    <hr>
     <nav class="flex-ctr freddy">
         <ul>
             <li>
@@ -32,15 +33,17 @@
             </li>
             <li>
                 <a href="/logout">Log Out</a>
-            </li>    
+            </li>
             <% } else { %>
-                <a href="/auth/google">Login with Google</a>
+            <a href="/auth/google">Login with Google</a>
             <% } %>
             </li>
         </ul>
-    </nav><hr>
-    <h1 class="page-title freddy"><%= title %></h1>
-    <!-- title is passed in as an optional parameter (aka "locals") to the res.render() function; 
+    </nav>
+    <hr>
+    <div class="content">
+        <h1 class="page-title freddy"><%= title %></h1>
+        <!-- title is passed in as an optional parameter (aka "locals") to the res.render() function; 
     locals is an object whose properties define local variables for the VIEW;
     you can read more in the documentation here: https://expressjs.com/en/api.html#res.redirect;
     note that the business logic for the embedded js is located in the controller -->
