@@ -3,7 +3,7 @@ const router = express.Router();
 const commentsCtrl = require("../controllers/comments");
 const recipesCtrl = require("../controllers/recipes");
 
-router.get("/recipes/:id/comments", isLoggedIn, recipesCtrl.show);
+router.get("/recipes/:id/comments", recipesCtrl.show);
 router.post("/recipes/:id/comments", isLoggedIn, commentsCtrl.create);
 // we have this .get above to catch the path req.path/req.originalUrl throws;
 // unfortunately, for some reason when we DO catch that get request, that request
