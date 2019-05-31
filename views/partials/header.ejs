@@ -6,12 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>EpiKorean</title>
-    <!-- fyi, we are HARDCODING the head title so that the tab name will stay the same throughout the website -->
     <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cormorant&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <!-- remember, if you're going to use bootstrap or just import some other css framework,
-    make sure to link that BEFORE your stylesheet -->
 </head>
 
 <body>
@@ -44,7 +41,3 @@
     <hr>
     <div class="content">
         <h1 class="page-title freddy"><%= title %></h1>
-        <!-- title is passed in as an optional parameter (aka "locals") to the res.render() function; 
-    locals is an object whose properties define local variables for the VIEW;
-    you can read more in the documentation here: https://expressjs.com/en/api.html#res.redirect;
-    note that the business logic for the embedded js is located in the controller -->

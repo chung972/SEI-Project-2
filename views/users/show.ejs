@@ -6,8 +6,6 @@
 <div>
     <p>My Recipes:</p>
     <ul>
-        <!-- consider refactoring the forEach below so that it lives in a
-        partial; that way we can stay more DRY -->
         <% recipes.forEach(recipe => { %>
         <li class="inline-form-delete">
             <form action="/users/<%= user._id%>/recipes/<%= recipe._id%>?_method=DELETE" method="POST">
